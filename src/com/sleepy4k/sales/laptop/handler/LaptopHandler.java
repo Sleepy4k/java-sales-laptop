@@ -17,42 +17,6 @@ public class LaptopHandler {
     this.price = price;
   }
 
-  public String getBrand() {
-    return brand;
-  }
-
-  public String getModel() {
-    return model;
-  }
-
-  public String getProcessor() {
-    return processor;
-  }
-
-  public String getRam() {
-    return ram;
-  }
-
-  public String getPrice() {
-    return price;
-  }
-
-  public void setBrand(String brand) {
-    this.brand = brand;
-  }
-
-  public void setModel(String model) {
-    this.model = model;
-  }
-
-  public void setProcessor(String processor) {
-    this.processor = processor;
-  }
-
-  public void setRam(String ram) {
-    this.ram = ram;
-  }
-
   @Override
   public String toString() {
     return Helper.generateUUID() + ',' + brand + ',' + model + ',' + processor + ',' + ram + ',' + price;

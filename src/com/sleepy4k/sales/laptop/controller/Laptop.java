@@ -17,6 +17,7 @@ public class Laptop {
         Helper.print("3. Find Laptop");
         Helper.print("4. Update Laptop");
         Helper.print("5. Delete Laptop");
+        Helper.print("6. Back");
         Helper.print("Choose: ");
 
         int choose = keyboard.nextInt();
@@ -38,6 +39,8 @@ public class Laptop {
           case 5:
             Laptop.deleteLaptop();
             break;
+          case 6:
+            return;
           default:
             Helper.print("Choose 1-6");
             break;
@@ -99,31 +102,31 @@ public class Laptop {
   }
 
   public static void findLaptop() {
-    Scanner scanner = new Scanner(System.in);
+    try (Scanner scanner = new Scanner(System.in)) {
+      Helper.print("Model: ");
+      String model = scanner.nextLine();
 
-    Helper.print("Model: ");
-    String model = scanner.nextLine();
+      String data = HandleFile.findDataFile(FILE_PATH, model);
 
-    String data = HandleFile.findDataFile(FILE_PATH, model);
+      if (data == null) {
+        Helper.printError("Data not found");
+        scanner.close();
+        return;
+      }
 
-    if (data == null) {
-      Helper.printError("Data not found");
-      scanner.close();
-      return;
+      String[] itemSplit = data.split(",");
+
+      Helper.print("");
+      Helper.print("ID: " + itemSplit[0]);
+      Helper.print("Brand: " + itemSplit[1]);
+      Helper.print("Model: " + itemSplit[2]);
+      Helper.print("Processor: " + itemSplit[3]);
+      Helper.print("RAM: " + itemSplit[4]);
+      Helper.print("Price: " + itemSplit[5]);
+      Helper.print("");
+    } catch (Exception e) {
+      Helper.printError(e.getMessage());
     }
-
-    String[] itemSplit = data.split(",");
-
-    Helper.print("");
-    Helper.print("ID: " + itemSplit[0]);
-    Helper.print("Brand: " + itemSplit[1]);
-    Helper.print("Model: " + itemSplit[2]);
-    Helper.print("Processor: " + itemSplit[3]);
-    Helper.print("RAM: " + itemSplit[4]);
-    Helper.print("Price: " + itemSplit[5]);
-    Helper.print("");
-
-    scanner.close();
   }
 
   public static void updateLaptop() {

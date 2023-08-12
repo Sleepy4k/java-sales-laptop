@@ -22,7 +22,7 @@ public class App {
             System.exit(0);
             break;
           default:
-            System.out.println("Choose 1-3");
+            System.out.println("Choose 1-2");
             break;
         }
       }
